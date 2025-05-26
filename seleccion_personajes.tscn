@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://w31tt31i4x2j"]
+
+[ext_resource type="Texture2D" uid="uid://b50uj2pg8pxg3" path="res://Fondos/SeleccionPersonaje.jpg" id="1_k84g6"]
+[ext_resource type="PackedScene" uid="uid://jjgrt4m6vja8" path="res://Scenes/ui.tscn" id="2_k60ay"]
+
+[node name="SeleccionPersonajes" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.3595, 1.36501)
+texture = ExtResource("1_k84g6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("2_k60ay")]

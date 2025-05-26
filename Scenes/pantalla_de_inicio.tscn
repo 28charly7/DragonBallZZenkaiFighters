@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6nxv4u70jn58"]
+
+[ext_resource type="Script" path="res://Scenes/pantalla_de_inicio.gd" id="1_31ckc"]
+[ext_resource type="Texture2D" uid="uid://b6ee48x3qlors" path="res://Fondos/PantallaDeInicio.jpg" id="1_jvwp3"]
+[ext_resource type="Texture2D" uid="uid://bn5mmex6aa8vn" path="res://Fondos/Dragon_Ball_Z_Logo_A.png" id="2_lnbab"]
+[ext_resource type="Texture2D" uid="uid://dwyav8nbkxuip" path="res://Fondos/Esferas.png" id="2_pg1mf"]
+[ext_resource type="Shader" path="res://Shaders/wave.gdshader" id="2_q3px3"]
+[ext_resource type="FontFile" uid="uid://bmrs4sof3apwo" path="res://TextFonts/Saiyan-Sans Right Oblique.ttf" id="4_d1w0t"]
+[ext_resource type="Shader" path="res://Shaders/pulse.gdshader" id="5_vl73l"]
+[ext_resource type="Texture2D" uid="uid://cbf3ncibrrfdx" path="res://Fondos/press.png" id="6_ts15h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2cusi"]
+shader = ExtResource("2_q3px3")
+shader_parameter/pulse_strength = 0.5
+shader_parameter/time_speed = 0.4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xrfvp"]
+
+[sub_resource type="Theme" id="Theme_ntjcl"]
+TextEdit/colors/font_color = Color(0, 0.501961, 0, 1)
+TextEdit/colors/search_result_border_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+TextEdit/font_sizes/font_size = 38
+TextEdit/fonts/font = ExtResource("4_d1w0t")
+TextEdit/styles/normal = SubResource("StyleBoxEmpty_xrfvp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1x4h"]
+shader = ExtResource("5_vl73l")
+shader_parameter/speed_pulse = 2.0
+shader_parameter/init_offset = 0.5
+shader_parameter/pixel_size = 0.05
+
+[node name="PantallaDeInicio" type="Node2D"]
+script = ExtResource("1_31ckc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(-1, 6)
+scale = Vector2(1.44594, 1.44778)
+texture = ExtResource("1_jvwp3")
+
+[node name="Esferas" type="Sprite2D" parent="."]
+position = Vector2(-3, -4)
+scale = Vector2(0.5255, 0.558)
+texture = ExtResource("2_pg1mf")
+
+[node name="Logo" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2cusi")
+position = Vector2(2, -35)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_lnbab")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+visible = false
+offset_left = 266.0
+offset_top = 467.0
+offset_right = 899.0
+offset_bottom = 513.0
+theme = SubResource("Theme_ntjcl")
+text = "PRESIONA CUALQUIER BOTON PARA EMPEZAR"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_g1x4h")
+position = Vector2(-1, 156)
+texture = ExtResource("6_ts15h")
