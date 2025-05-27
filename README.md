@@ -1,6 +1,6 @@
-# Proyecto Godot - Primera Entrega
+# Proyecto DragonBallZ Zenkai Fighters - Primera Entrega
 
-Este es el repositorio de la primera entrega de mi proyecto desarrollado en Godot 4.
+Este es el repositorio de la primera entrega del proyecto desarrollado en Godot 4.
 
 En esta versión inicial, se incluyen:
 - Estructura básica del proyecto.
