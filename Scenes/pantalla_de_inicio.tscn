@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://c6nxv4u70jn58"]
 
-[ext_resource type="Script" path="res://Scenes/pantalla_de_inicio.gd" id="1_31ckc"]
+[ext_resource type="Script" path="res://Scripts/pantalla_de_inicio.gd" id="1_31ckc"]
 [ext_resource type="Texture2D" uid="uid://b6ee48x3qlors" path="res://Fondos/PantallaDeInicio.jpg" id="1_jvwp3"]
 [ext_resource type="Texture2D" uid="uid://bn5mmex6aa8vn" path="res://Fondos/Dragon_Ball_Z_Logo_A.png" id="2_lnbab"]
 [ext_resource type="Texture2D" uid="uid://dwyav8nbkxuip" path="res://Fondos/Esferas.png" id="2_pg1mf"]

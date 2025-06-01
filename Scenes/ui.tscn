@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://jjgrt4m6vja8"]
+[gd_scene load_steps=12 format=3 uid="uid://jjgrt4m6vja8"]
 
-[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_ph87l"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_ph87l"]
 [ext_resource type="Texture2D" uid="uid://dtfg1yjl5hmqb" path="res://Personajes/Seleccion/GokuSelect.png" id="1_sigrm"]
 [ext_resource type="Texture2D" uid="uid://dpwximvo5e0lu" path="res://Fondos/BordeSeleccion.png" id="2_khird"]
 [ext_resource type="Texture2D" uid="uid://d1etoyqgrl46w" path="res://Personajes/Seleccion/GokuP1.png" id="2_o0amv"]
 [ext_resource type="Texture2D" uid="uid://csqlwjjaaovr0" path="res://Personajes/Seleccion/VegetaSelect.png" id="2_oaw2l"]
+[ext_resource type="Texture2D" uid="uid://b3amucqr1ay2s" path="res://Personajes/Seleccion/GohanSelect.png" id="5_7ke8c"]
+[ext_resource type="Texture2D" uid="uid://byp22o17muq0l" path="res://Personajes/Seleccion/TrunksSeleccion.png" id="6_ri24i"]
+[ext_resource type="Texture2D" uid="uid://clq42t8w3rhgm" path="res://Personajes/Seleccion/FriezaSeleccion.png" id="7_ui87d"]
+[ext_resource type="Texture2D" uid="uid://b40wny8kkyual" path="res://Personajes/Seleccion/KidBuuSeleccion.png" id="8_er7sl"]
+[ext_resource type="Texture2D" uid="uid://lre4gndb76e8" path="res://Personajes/Seleccion/BrolySeleccion.png" id="9_wtaf4"]
+[ext_resource type="Texture2D" uid="uid://d0jbdhwc8khok" path="res://Personajes/Seleccion/CellSeleccion.png" id="10_wbxt3"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -32,13 +38,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -175.0
-offset_right = 29.0
-offset_bottom = 650.0
+offset_left = -200.0
+offset_top = 50.0
+offset_right = 212.0
+offset_bottom = 700.0
 
 [node name="Personajes" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
-columns = 2
+columns = 4
 
 [node name="Goku" type="TextureRect" parent="CenterContainer/Personajes"]
 custom_minimum_size = Vector2(100, 100)
@@ -51,6 +58,48 @@ stretch_mode = 5
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("2_oaw2l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Gohan" type="TextureRect" parent="CenterContainer/Personajes"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("5_7ke8c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Trunks" type="TextureRect" parent="CenterContainer/Personajes"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("6_ri24i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frieza" type="TextureRect" parent="CenterContainer/Personajes"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("7_ui87d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KidBuu" type="TextureRect" parent="CenterContainer/Personajes"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("8_er7sl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Broly" type="TextureRect" parent="CenterContainer/Personajes"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("9_wtaf4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cell" type="TextureRect" parent="CenterContainer/Personajes"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("10_wbxt3")
 expand_mode = 1
 stretch_mode = 5
 

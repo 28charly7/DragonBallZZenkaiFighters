@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c542qdauwwr3r"]
 
 [ext_resource type="AudioStream" uid="uid://besbwjt7fqod" path="res://soundtrack/Intro.ogg" id="1_6w47n"]
-[ext_resource type="Script" path="res://Scenes/musica.gd" id="2_56mby"]
+[ext_resource type="Script" path="res://Scripts/musica.gd" id="2_56mby"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("2_56mby")
