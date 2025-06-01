@@ -7,14 +7,18 @@
 [node name="pantalla_de_carga" type="Node2D"]
 script = ExtResource("1_r884c")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="fondo_carga" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, 3.8147e-05)
+scale = Vector2(1.44, 1.42222)
 texture = ExtResource("2_y7ce6")
 
 [node name="texto_cargando" type="Label" parent="."]
-offset_left = 206.0
-offset_top = -232.0
-offset_right = 390.0
-offset_bottom = -165.0
+offset_left = 376.0
+offset_top = -328.0
+offset_right = 560.0
+offset_bottom = -261.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_2r81i")
@@ -22,10 +26,10 @@ theme_override_font_sizes/font_size = 50
 text = "Cargando..."
 
 [node name="barra_de_progreso" type="TextureProgressBar" parent="."]
-offset_left = 211.0
-offset_top = -160.0
-offset_right = 388.0
-offset_bottom = -120.0
+offset_left = 376.0
+offset_top = -264.0
+offset_right = 553.0
+offset_bottom = -224.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../barra_de_progreso")
