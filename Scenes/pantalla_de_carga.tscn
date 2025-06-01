@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdofkn8qlhn8e"]
+
+[ext_resource type="Script" path="res://pantalla_de_carga.gd" id="1_r884c"]
+[ext_resource type="Texture2D" uid="uid://b6ee48x3qlors" path="res://Fondos/PantallaDeInicio.jpg" id="2_y7ce6"]
+[ext_resource type="FontFile" uid="uid://bmrs4sof3apwo" path="res://TextFonts/Saiyan-Sans Right Oblique.ttf" id="3_2r81i"]
+
+[node name="pantalla_de_carga" type="Node2D"]
+script = ExtResource("1_r884c")
+
+[node name="fondo_carga" type="Sprite2D" parent="."]
+texture = ExtResource("2_y7ce6")
+
+[node name="texto_cargando" type="Label" parent="."]
+offset_left = 206.0
+offset_top = -232.0
+offset_right = 390.0
+offset_bottom = -165.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_2r81i")
+theme_override_font_sizes/font_size = 50
+text = "Cargando..."
+
+[node name="barra_de_progreso" type="TextureProgressBar" parent="."]
+offset_left = 211.0
+offset_top = -160.0
+offset_right = 388.0
+offset_bottom = -120.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../barra_de_progreso")
