@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpi7i7c0up5ff"]
+
+[ext_resource type="PackedScene" uid="uid://ddi24tsroedjc" path="res://Scenes/PersonajesScenes/figther_body_2d.tscn" id="1_0b2x7"]
+[ext_resource type="Script" path="res://Scripts/Scripts_personajes/player_1.gd" id="1_dha6a"]
+
+[node name="Player1" type="Node2D"]
+script = ExtResource("1_dha6a")
+
+[node name="FigtherBody2D" parent="." instance=ExtResource("1_0b2x7")]
+
+[editable path="FigtherBody2D"]

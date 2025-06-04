@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c6nxv4u70jn58" path="res://Scenes/pantalla_de_inicio.tscn" id="1_0ppho"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_xp3d0"]
-[ext_resource type="PackedScene" uid="uid://w31tt31i4x2j" path="res://seleccion_personajes.tscn" id="2_187rs"]
+[ext_resource type="PackedScene" uid="uid://w31tt31i4x2j" path="res://Scenes/seleccion_personajes.tscn" id="2_187rs"]
 [ext_resource type="PackedScene" uid="uid://c542qdauwwr3r" path="res://Scenes/musica.tscn" id="3_ke36a"]
 
 [node name="Main" type="Node2D"]
