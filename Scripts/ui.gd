@@ -4,6 +4,8 @@ extends Control
 @onready var personaje_p1 = $PersonajeJugador1
 @onready var selector = $CenterContainer/Personajes/Selector
 
+const COLUMNAS = 4
+
 var personajes := []
 var indiceActual := 0
 var personajesImagenes := [
@@ -38,8 +40,18 @@ func actualizarSelector():
 		personaje_p1.texture = null
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_right"):
-		indiceActual = (indiceActual + 1) % personajes.size()
-		actualizarSelector()
+		if (indiceActual + 1) % COLUMNAS != 0 and indiceActual + 1 < personajes.size():
+			indiceActual += 1
+			actualizarSelector()
 	elif event.is_action_pressed("ui_left"):
-		indiceActual = (indiceActual - 1 + personajes.size()) % personajes.size()
-		actualizarSelector()
+		if indiceActual % COLUMNAS != 0:
+			indiceActual -= 1
+			actualizarSelector()
+	elif event.is_action_pressed("ui_down"):
+		if indiceActual + COLUMNAS < personajes.size():
+			indiceActual += COLUMNAS		
+			actualizarSelector()
+	elif event.is_action_pressed("ui_up"):
+		if indiceActual - COLUMNAS >= 0:
+			indiceActual -= COLUMNAS
+			actualizarSelector()
