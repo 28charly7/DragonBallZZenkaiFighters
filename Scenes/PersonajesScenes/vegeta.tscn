@@ -949,7 +949,7 @@ transitions = ["Start", "PreEntrada", SubResource("AnimationNodeStateMachineTran
 [node name="Vegeta" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-5, -10)
+position = Vector2(-5, 0)
 texture = ExtResource("4_dek77")
 hframes = 6
 

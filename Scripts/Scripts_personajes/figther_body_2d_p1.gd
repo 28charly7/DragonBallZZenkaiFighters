@@ -6,14 +6,21 @@ const GRAVITY = 1000
 
 @onready var sprite_holder = $SpriteHolder
 @onready var animation_tree: AnimationTree = null
+@export var fighter_name: String = "Default"
+
 var state_machine = null
 
 var target_position = Vector2.ZERO
 var moving = false
 
 func _ready():
-	load_character("res://Scenes/PersonajesScenes/goku.tscn")
-	#load_character("res://Scenes/PersonajesScenes/vegeta.tscn")
+	#load_character("res://Scenes/PersonajesScenes/goku.tscn")
+	match fighter_name:
+		"Goku":
+			load_character("res://Scenes/PersonajesScenes/goku.tscn")
+		"Vegeta":
+			load_character("res://Scenes/PersonajesScenes/vegeta.tscn")
+			
 	target_position = global_position
 	moving = false
 	
