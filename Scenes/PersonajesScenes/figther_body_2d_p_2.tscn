@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://g0eixwfgs2n0"]
+
+[ext_resource type="Script" path="res://Scripts/Scripts_personajes/figther_body_2d_p2.gd" id="1_s2itb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfjp5"]
+size = Vector2(65, 90)
+
+[node name="FigtherBody2D_P2" type="CharacterBody2D"]
+script = ExtResource("1_s2itb")
+fighter_name = "Vegeta"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xfjp5")
+
+[node name="SpriteHolder" type="Node2D" parent="."]
