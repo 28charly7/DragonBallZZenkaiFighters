@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform float pulse_strength : hint_range(0.0, 1.0) = 0.2; 
-uniform float time_speed = 1.0; 
+uniform float pulse_strength : hint_range(0.0, 1.0) = 0.2;
+uniform float time_speed = 1.0;
 
 void fragment() {
     float time = TIME * time_speed;

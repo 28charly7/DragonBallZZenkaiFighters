@@ -10,5 +10,5 @@ func _ready():
 	
 	audio.stream = stream
 	add_child(audio)
-	audio.play()
+	#audio.play()
 	

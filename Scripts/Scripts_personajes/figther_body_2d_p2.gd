@@ -1,76 +1,103 @@
 extends CharacterBody2D
 
-const STEP_DISTANCE = 80 
-const JUMP_FORCE = -400
-const GRAVITY = 1000 
+const SPEED = 300 
+const JUMP_FORCE = -600
+const GRAVITY = 1200 
+
+var vida = 100
 
 @onready var sprite_holder = $SpriteHolder
 @onready var animation_tree: AnimationTree = null
-@export var fighter_name: String = "Default"
+@onready var raycast : RayCast2D = $RayCast2D
 
 var state_machine = null
-
-var target_position = Vector2.ZERO
-var moving = false
+var opponent : CharacterBody2D
 
 func _ready():
-	#load_character("res://Scenes/PersonajesScenes/goku.tscn")
-	match fighter_name:
+	var figther_name = Global.personaje_p2
+
+	print("Nombre del personaje: ", figther_name)
+	
+	match figther_name:
 		"Goku":
 			load_character("res://Scenes/PersonajesScenes/goku.tscn")
 		"Vegeta":
 			load_character("res://Scenes/PersonajesScenes/vegeta.tscn")
 			
-	target_position = global_position
-	moving = false
-	
 func _physics_process(delta):
-	if not moving and global_position != target_position:
-		target_position = global_position
-	var is_jumping = false 
+	update_facing(opponent.global_position)
+	var is_jumping = false
+	var on_floor = is_on_floor()
+	var facing_right = global_position.x < opponent.global_position.x
+	var direction = 0
 	
-	if not is_on_floor():
+	try_travel_fallback(["Entrada1_1", "Entrada1_2", "EntradaFinal", "Preparado"])
+	
+	#Gravedad
+	if not on_floor:
 		velocity.y += GRAVITY * delta
+	#Salto
+	if on_floor and Input.is_action_just_pressed("ui_up"):
+		print("salto")
+		velocity.y = JUMP_FORCE
 		is_jumping = true
-	else:
-		if Input.is_action_just_pressed("ui_up"):
-			print("salto")
-			velocity.y = JUMP_FORCE
-			is_jumping = true
+		state_machine.travel("Salto")
+		move_and_slide()
+		return
 	
-	if not moving:
-		if Input.is_action_just_pressed("ui_right"):
-			print("derecha")
-			target_position.x += STEP_DISTANCE
-			moving = true
-		elif Input.is_action_just_pressed("ui_left"):
-			print("izquierda")
-			target_position.x -= STEP_DISTANCE 
-			moving = true
+	#Movimiento
+	if Input.is_action_pressed("ui_right"):
+		direction = 1
+	elif Input.is_action_pressed("ui_left"):
+		direction = -1
 	
-	if is_jumping:
-		print("Saltando")
-		state_machine.travel("Salto")	
-	elif moving:
-		var direction = (target_position - global_position).normalized()
-		var distance = global_position.distance_to(target_position)
-
-		if distance < 1.0:
-			global_position = target_position
-			velocity.x = 0
-			moving = false
-		else:
-			velocity.x = direction.x * 400  
-			if animation_tree:
-				if direction.x > 0:
-					state_machine.travel("Dash1_1")
-				else:
-					state_machine.travel("Dash1_2")
+	if Input.is_action_pressed("Golpe_P2"):
+		print("GolpeP1g PRESSED")
+		print("State machine:", state_machine)
+		print("Tiene animación?", animation_tree.has_node("parameters/GolpeCombo1_1"))
+		state_machine.travel("GolpeCombo1_1")
+		return
+	#Evitar colision
+	raycast.target_position.x = 30 * direction
+	raycast.force_raycast_update()
+	if raycast.is_colliding():
+		direction = 0
+	velocity.x = direction * SPEED
+	
+	if direction == 1:
+		if facing_right:
+			state_machine.travel("Dash1_1")
+			if Input.is_action_just_released("ui_right"):
+				state_machine.travel("Dash1_1end")
+		else: 
+			state_machine.travel("Dash1_2")
+			if Input.is_action_just_released("ui_left"):
+				state_machine.travel("Dash1_2end")
+	elif direction == -1:
+		if facing_right:
+			state_machine.travel("Dash1_2") 
+			if Input.is_action_just_released("ui_left"):
+				state_machine.travel("Dash1_2end")
+		else: 
+			state_machine.travel("Dash1_1")
+			if Input.is_action_just_released("ui_right"):
+				state_machine.travel("Dash1_1end")	
 	else:
-		if animation_tree:
-			state_machine.travel("Preparado")
+		state_machine.travel("Preparado")
+	print("Animación actual: ", state_machine.get_current_node())
 	move_and_slide()
-	
+
+func update_facing(opponent_position: Vector2):
+	var visual = sprite_holder.get_child(0).get_node_or_null("Visual")
+	if visual:
+		if opponent_position.x < global_position.x:
+			visual.scale.x = -1
+		else: 
+			visual.scale.x = 1
+	else:
+		print("Visual node no enconcrado")
+func set_opponent(op: CharacterBody2D):
+	opponent = op
 
 func load_character(path: String):
 	var character_scene = load(path)
@@ -85,6 +112,57 @@ func load_character(path: String):
 	character.position = Vector2.ZERO
 	sprite_holder.add_child(character)
 	
-	animation_tree = character.get_node("AnimationTree")
+	sprite_holder.scale.x = 1
+	
+	animation_tree = character.get_node_or_null("Visual/AnimationTree")
+	if not animation_tree:
+		push_error("No se encontró AnimationTree en " + path)
+		return
+	
 	animation_tree.active = true
-	state_machine = animation_tree.get("parameters/playback")
+	state_machine = animation_tree.get("parameters/playback") 
+	
+	try_travel_fallback(["Entrada1_1", "Entrada1_2", "EntradaFinal", "Preparado"])
+	
+	var visual_node = character.get_node_or_null("Visual")
+	
+	if visual_node:
+		character.position = Vector2.ZERO
+		visual_node.name = "Visual"  
+	else:
+		push_error("No se encontró nodo 'Visual' en " + path)
+	
+func try_travel(state_name: String):
+	if animation_tree and state_machine:
+		if animation_tree.has_node("parameters/" + state_name):
+			state_machine.travel(state_name)
+		else:
+			print("Animación no encontrada:", state_name)
+	
+func try_travel_fallback(states: Array):
+	for state in states:
+		if animation_tree and animation_tree.has_node("parameters/" + state):
+			state_machine.travel(state)
+			print("Se usó animación:", state)
+			return
+	print("Ninguna animación válida encontrada entre:", states)
+
+func activate_hitbox():
+	$Hitbox2/CollisionShape2D.disabled = false
+	print("CollisionShape Hitbox disabled?: ", $Hitbox2/CollisionShape2D.disabled)
+	print("Hitbox2 activada")
+
+func deactivate_hitbox():
+	$Hitbox2/CollisionShape2D.disabled = true
+	print("CollisionShape Hitbox disabled?: ", $Hitbox2/CollisionShape2D.disabled)
+	print("Hitbox2 desactivada")
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.name == "HurtBox1":
+		var enemy = area.get_parent()
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(10)
+
+func take_damage(amount: int):
+	vida -= amount
+	print("Me golpearon el player 2: ", vida)

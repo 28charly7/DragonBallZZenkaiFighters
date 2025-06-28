@@ -1,15 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://g0eixwfgs2n0"]
+[gd_scene load_steps=5 format=3 uid="uid://g0eixwfgs2n0"]
 
 [ext_resource type="Script" path="res://Scripts/Scripts_personajes/figther_body_2d_p2.gd" id="1_s2itb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfjp5"]
-size = Vector2(65, 90)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hk742"]
+radius = 26.0
+height = 84.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2w60"]
+radius = 20.025
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vqym"]
+radius = 29.0
+height = 82.0
 
 [node name="FigtherBody2D_P2" type="CharacterBody2D"]
 script = ExtResource("1_s2itb")
-fighter_name = "Vegeta"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xfjp5")
+shape = SubResource("CapsuleShape2D_hk742")
 
 [node name="SpriteHolder" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-40, 0)
+
+[node name="Hitbox2" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2"]
+position = Vector2(-40, -19)
+shape = SubResource("CircleShape2D_n2w60")
+debug_color = Color(0, 0.0325286, 0.0454713, 0.42)
+
+[node name="HurtBox2" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
+shape = SubResource("CapsuleShape2D_4vqym")
+debug_color = Color(0.886878, 0.190738, 0.282318, 0.42)
+
+[connection signal="area_entered" from="Hitbox2" to="." method="_on_hitbox_area_entered"]

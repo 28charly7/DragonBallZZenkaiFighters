@@ -1,5 +1,6 @@
-[gd_scene load_steps=48 format=3 uid="uid://c5n34u4opapaj"]
+[gd_scene load_steps=58 format=3 uid="uid://c5n34u4opapaj"]
 
+[ext_resource type="Script" path="res://Scenes/PersonajesScenes/visual_goku.gd" id="1_pfjl8"]
 [ext_resource type="Texture2D" uid="uid://d5f8ja85r15w" path="res://Personajes/Goku/GokuSSIdle.png" id="1_yvk8w"]
 [ext_resource type="Texture2D" uid="uid://h3xash0nrbyb" path="res://Personajes/Goku/GokuSS_Golpe.png" id="2_jlrai"]
 [ext_resource type="Texture2D" uid="uid://dpdygxjdq8p5q" path="res://Personajes/Goku/GokuSS_Patada.png" id="3_mqlwp"]
@@ -92,10 +93,51 @@ tracks/2/path = NodePath(".:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_k5g76"]
+resource_name = "Dash1_1end"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_a8be8")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_xkia2"]
@@ -133,10 +175,51 @@ tracks/2/path = NodePath(".:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_4wpoe"]
+resource_name = "Dash1_2end"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_4w1nx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_vkngj"]
@@ -262,9 +345,9 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_ux13p"]
-resource_name = "Golpe_Combo1_1"
-length = 0.5
+[sub_resource type="Animation" id="Animation_yjku8"]
+resource_name = "GolpeCombo1_1"
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -301,6 +384,23 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.109307, 0.206985),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate_hitbox"
+}, {
+"args": [],
+"method": &"deactivate_hitbox"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_4yylm"]
@@ -675,11 +775,13 @@ tracks/2/keys = {
 _data = {
 "Blast_Combo1_1": SubResource("Animation_f3e0v"),
 "Dash1_1": SubResource("Animation_a5tdo"),
+"Dash1_1end": SubResource("Animation_k5g76"),
 "Dash1_2": SubResource("Animation_xkia2"),
+"Dash1_2end": SubResource("Animation_4wpoe"),
 "Entrada1_1": SubResource("Animation_vkngj"),
 "GanchoElevado_Combo2_2": SubResource("Animation_f1dlc"),
 "Gancho_Combo2_1": SubResource("Animation_rdvpu"),
-"Golpe_Combo1_1": SubResource("Animation_ux13p"),
+"GolpeCombo1_1": SubResource("Animation_yjku8"),
 "Patada_Combo1_1": SubResource("Animation_4yylm"),
 "PoseWin1_1": SubResource("Animation_knvai"),
 "PoseWin1_2": SubResource("Animation_te1jq"),
@@ -694,11 +796,20 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x3oey"]
 animation = &"Dash1_1"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i240d"]
+animation = &"Dash1_1end"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2t3fb"]
 animation = &"Dash1_2"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bgreu"]
+animation = &"Dash1_2end"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dcloo"]
 animation = &"Entrada1_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_glqa5"]
+animation = &"GolpeCombo1_1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t8c5x"]
 animation = &"Preparado"
@@ -713,22 +824,11 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fsqr0"]
-switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybgky"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yaa5a"]
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jugkg"]
 switch_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjiqs"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_px2ff"]
 switch_mode = 1
@@ -737,37 +837,70 @@ switch_mode = 1
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fsqr0"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4lamw"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nomdt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ystey"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dg2nb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dvvjn"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4iqif"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iin6s"]
 states/Dash1_1/node = SubResource("AnimationNodeAnimation_x3oey")
-states/Dash1_1/position = Vector2(307, 190.26)
+states/Dash1_1/position = Vector2(232, 173.26)
+states/Dash1_1end/node = SubResource("AnimationNodeAnimation_i240d")
+states/Dash1_1end/position = Vector2(232, 253.096)
 states/Dash1_2/node = SubResource("AnimationNodeAnimation_2t3fb")
-states/Dash1_2/position = Vector2(425.053, -23.1781)
+states/Dash1_2/position = Vector2(115, -6.1781)
+states/Dash1_2end/node = SubResource("AnimationNodeAnimation_bgreu")
+states/Dash1_2end/position = Vector2(264.053, -6.1781)
 states/End/position = Vector2(716, 69)
 states/Entrada1_1/node = SubResource("AnimationNodeAnimation_dcloo")
 states/Entrada1_1/position = Vector2(216, 74)
+states/GolpeCombo1_1/node = SubResource("AnimationNodeAnimation_glqa5")
+states/GolpeCombo1_1/position = Vector2(421, -18.7151)
 states/Preparado/node = SubResource("AnimationNodeAnimation_t8c5x")
 states/Preparado/position = Vector2(421, 69)
 states/Salto/node = SubResource("AnimationNodeAnimation_gux4i")
-states/Salto/position = Vector2(555.053, 190.26)
+states/Salto/position = Vector2(421, 190.26)
 states/Start/position = Vector2(66, 74)
-transitions = ["Start", "Entrada1_1", SubResource("AnimationNodeStateMachineTransition_xf8hh"), "Entrada1_1", "Preparado", SubResource("AnimationNodeStateMachineTransition_or0f5"), "Preparado", "Dash1_1", SubResource("AnimationNodeStateMachineTransition_fsqr0"), "Dash1_1", "Preparado", SubResource("AnimationNodeStateMachineTransition_ybgky"), "Preparado", "End", SubResource("AnimationNodeStateMachineTransition_yaa5a"), "Preparado", "Dash1_2", SubResource("AnimationNodeStateMachineTransition_jugkg"), "Dash1_2", "Preparado", SubResource("AnimationNodeStateMachineTransition_kjiqs"), "Preparado", "Salto", SubResource("AnimationNodeStateMachineTransition_px2ff"), "Salto", "Preparado", SubResource("AnimationNodeStateMachineTransition_dc3rf")]
-graph_offset = Vector2(-36.9473, -2.93629)
+transitions = ["Start", "Entrada1_1", SubResource("AnimationNodeStateMachineTransition_xf8hh"), "Entrada1_1", "Preparado", SubResource("AnimationNodeStateMachineTransition_or0f5"), "Preparado", "End", SubResource("AnimationNodeStateMachineTransition_yaa5a"), "Preparado", "Dash1_2", SubResource("AnimationNodeStateMachineTransition_jugkg"), "Preparado", "Salto", SubResource("AnimationNodeStateMachineTransition_px2ff"), "Salto", "Preparado", SubResource("AnimationNodeStateMachineTransition_dc3rf"), "Preparado", "Dash1_1", SubResource("AnimationNodeStateMachineTransition_fsqr0"), "Dash1_1", "Dash1_1end", SubResource("AnimationNodeStateMachineTransition_4lamw"), "Dash1_1end", "Preparado", SubResource("AnimationNodeStateMachineTransition_nomdt"), "Dash1_2", "Dash1_2end", SubResource("AnimationNodeStateMachineTransition_ystey"), "Dash1_2end", "Preparado", SubResource("AnimationNodeStateMachineTransition_dg2nb"), "Preparado", "GolpeCombo1_1", SubResource("AnimationNodeStateMachineTransition_dvvjn"), "GolpeCombo1_1", "Preparado", SubResource("AnimationNodeStateMachineTransition_4iqif")]
+graph_offset = Vector2(-299.915, -48.7151)
 
 [node name="Goku" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Visual" type="Node2D" parent="."]
+script = ExtResource("1_pfjl8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
 position = Vector2(6, -13)
 texture = ExtResource("1_yvk8w")
 flip_h = true
 hframes = 6
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_kp3wf")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Visual"]
 root_node = NodePath("../Sprite2D")
 tree_root = SubResource("AnimationNodeStateMachine_iin6s")
 anim_player = NodePath("../AnimationPlayer")
